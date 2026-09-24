@@ -7,7 +7,7 @@ from pymongo import MongoClient
 
 app = FastAPI(title='MongoDB API', version='1.0.0')
 
-MONGO_URI = 'mongodb+srv://edigelson59797686_db_user:Screamo%402@senac.cveqazu.mongodb.net/?appName=Senac'
+MONGO_URI = 'mongodb+srv://edigelson59797686_db_user:TKCwbPEpujpdQBzj@senac.cveqazu.mongodb.net/?appName=Senac'
 DB_NAME = 'Senac'
 
 engine = AsyncDbEngine(mongo_uri=MONGO_URI, db_name=DB_NAME)
