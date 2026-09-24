@@ -21,15 +21,20 @@ class Produtos(DbModel):
 
 def check_connection():
     try:
-        MongoClient(MONGO_URI, serverSelectionTimeoutMS=2000).admin.command('ping')
-        return True
-    except Exception:
-        return False
+        client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=10000)
+        client.admin.command('ping')
+        return True, None
+    except Exception as e:
+        return False, str(e)[:300]
 
 
 @app.get('/')
 async def root():
-    return {'status': 'ok', 'connected': check_connection()}
+    connected, error = check_connection()
+    payload = {'status': 'ok', 'connected': connected}
+    if error:
+        payload['error'] = error
+    return payload
 
 
 @app.post('/products')
