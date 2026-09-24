@@ -40,8 +40,8 @@ async def root():
 @app.post('/products')
 async def create_product(nome: str, preco: float):
     produto = Produtos(nome=nome, preco=preco)
-    result = await engine.save(produto)
-    return {'id': str(result.id), 'nome': nome, 'preco': preco}
+    await engine.save(produto)
+    return {'id': str(produto.id), 'nome': nome, 'preco': preco}
 
 
 @app.get('/products')
