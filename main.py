@@ -46,8 +46,11 @@ async def create_product(nome: str, preco: float):
 
 @app.get('/products')
 async def list_products():
-    produtos = await engine.find_many(Produtos, as_dict=True)
-    return produtos
+    produtos = await engine.find_many(Produtos)
+    return [
+        {'id': str(p.id), 'nome': p.nome, 'preco': p.preco}
+        for p in produtos
+    ]
 
 
 if __name__ == '__main__':
