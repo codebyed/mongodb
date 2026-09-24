@@ -1,15 +1,14 @@
 import os
 from typing import ClassVar
-
 import uvicorn
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pyodmongo import AsyncDbEngine, DbModel
 from pymongo import MongoClient
 
 app = FastAPI(title='MongoDB API', version='1.0.0')
 
-MONGO_URI = os.getenv('MONGO_URI', 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000')
-DB_NAME = os.getenv('MONGO_DB', 'mongodb')
+MONGO_URI = 'mongodb+srv://edigelson59797686_db_user:Screamo%402@senac.cveqazu.mongodb.net/?appName=Senac'
+DB_NAME = 'mongodb'
 
 engine = AsyncDbEngine(mongo_uri=MONGO_URI, db_name=DB_NAME)
 
